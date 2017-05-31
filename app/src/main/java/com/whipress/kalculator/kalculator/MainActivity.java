@@ -144,7 +144,7 @@ Integer s1 = 0 , s2 = 0;
         if (operationSignal.equals("X")) {
             Double v3 = v1 * v2;
             Log.w("valores", CurrentString + " > " + operationSignal + separated[1]);
-            CalculationValues.setText(v3.toString());
+            CalculationValues.setText(v3.toString() );
         }
 
 
