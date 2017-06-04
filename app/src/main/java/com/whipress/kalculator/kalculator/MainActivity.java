@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import bsh.EvalError;
+import bsh.Interpreter;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 TextView CalculationValues;
@@ -17,14 +20,21 @@ Double v1 = 0.0, v2 = 0.0, v3 = 0.0, v4 = 0.0;
 Integer s1 = 0 , s2 = 0;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_main);
 
         CalculationValues = (TextView)findViewById(R.id.CalculationValues);
 
         createCalculatorButtons();
+
+
 
 
     }
@@ -87,76 +97,21 @@ Integer s1 = 0 , s2 = 0;
 
     }
 
-    public void insertCalculationValues(View z)
-    {
-        TextView txtView = (TextView)findViewById(z.getId());
-
-        if (txtView.getText().toString().equals("-") && s1 == 0)
-        {
-
-            operationSignal = "-";
-
-                s1 = 1;
-                Log.w("S1", "é um" + operationSignal);
-          }
-
-
-        if (txtView.getText().toString().equals("X") && s1 == 0)
-        {
-
-            operationSignal = "X";
-
-            s1 = 1;
-            Log.w("S1", "é um" + operationSignal);
-        }
-
-
-
-        if (txtView.getText().toString().equals("="))
-        {
-            doCalculation();
-        }
-        else
-        {
-            CalculationValues.setText(CalculationValues.getText().toString() + txtView.getText());
-        }
-
-    }
-
-    public void doCalculation()
-    {
-
-        String CurrentString = CalculationValues.getText().toString();
-
-        String[] separated = CurrentString.split(operationSignal);
-
-
-        Double v1 = Double.parseDouble(separated[0]);
-        Double v2 = Double.parseDouble(separated[1]);
-
-
-        if (operationSignal.equals("-")) {
-            Double v3 = v1 - v2;
-            Log.w("valores", CurrentString + " > " + operationSignal + v1);
-            CalculationValues.setText(v3.toString());
-        }
-
-        if (operationSignal.equals("X")) {
-            Double v3 = v1 * v2;
-            Log.w("valores", CurrentString + " > " + operationSignal + separated[1]);
-            CalculationValues.setText(v3.toString() );
-        }
-
-
-
-    }
 
 
 
     @Override
     public void onClick(View v) {
 
-        insertCalculationValues(v);
+        Interpreter interpreter = new Interpreter();
+        try {
+            //interpreter.eval("result = (7+21*6)/(32-27)");
+            interpreter.eval("result = 5 + 5  - 2");
+
+            Log.w("Valor", "" + interpreter.get("result"));
+        } catch (EvalError evalError) {
+            evalError.printStackTrace();
+        }
 
     }
 }
