@@ -106,7 +106,7 @@ Integer s1 = 0 , s2 = 0;
         Interpreter interpreter = new Interpreter();
         try {
             //interpreter.eval("result = (7+21*6)/(32-27)");
-            interpreter.eval("result = 5 + 5  - 2 * 3");
+            interpreter.eval("result = 5 + 5  - 2 * 8");
 
             Log.w("Valor", "" + interpreter.get("result"));
         } catch (EvalError evalError) {
