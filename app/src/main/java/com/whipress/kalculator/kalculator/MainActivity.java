@@ -111,8 +111,10 @@ Integer s1 = 0 , s2 = 0;
             Interpreter interpreter = new Interpreter();
             try {
                 //interpreter.eval("result = (7+21*6)/(32-27)");
-                String teste = CalculationValues.getText().toString();
-                interpreter.eval("result =" + teste);
+                String equation = CalculationValues.getText().toString();
+                equation = equation.replace("X", "*");
+                equation = equation.replace("÷", "/");
+                interpreter.eval("result =" + equation);
 
                 CalculationValues.setText(interpreter.get("result").toString());
             } catch (EvalError evalError) {
