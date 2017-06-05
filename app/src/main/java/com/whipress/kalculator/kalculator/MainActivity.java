@@ -103,15 +103,28 @@ Integer s1 = 0 , s2 = 0;
     @Override
     public void onClick(View v) {
 
-        Interpreter interpreter = new Interpreter();
-        try {
-            //interpreter.eval("result = (7+21*6)/(32-27)");
-            interpreter.eval("result = 5 + 5  - 2 * 8");
+        TextView txt = (TextView)findViewById(v.getId());
 
-            Log.w("Valor", "" + interpreter.get("result"));
-        } catch (EvalError evalError) {
-            evalError.printStackTrace();
+
+        if (txt.getText().equals("=")) {
+
+            Interpreter interpreter = new Interpreter();
+            try {
+                //interpreter.eval("result = (7+21*6)/(32-27)");
+                String teste = CalculationValues.getText().toString();
+                interpreter.eval("result =" + teste);
+
+                CalculationValues.setText(interpreter.get("result").toString());
+            } catch (EvalError evalError) {
+                evalError.printStackTrace();
+            }
+        }
+        else {
+            CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
+            String valor = CalculationValues.getText().toString();
+            Log.w("Valor", "" + txt.getText());
+        }
+
         }
 
     }
-}
