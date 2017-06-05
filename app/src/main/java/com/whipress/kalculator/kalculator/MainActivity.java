@@ -104,29 +104,41 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
         TextView txt = (TextView) findViewById(v.getId());
 
-        if (txt.getText().equals("C")) {
-            CalculationValues.setText("0");
-        } else {
-            if (txt.getText().equals("=")) {
+        if (txt.getText().equals("C"))
+        {
+          CalculationValues.setText("");
+
+        }
+
+        else
+            {
+            if (txt.getText().equals("="))
+            {
 
                 //This object was created used BeanShell
                 Interpreter interpreter = new Interpreter();
+
+
+
                 try {
 
                     String equation = CalculationValues.getText().toString();
                     equation = equation.replace("X", "*");
                     equation = equation.replace("÷", "/");
                     interpreter.eval("result =" + equation);
-
                     CalculationValues.setText(interpreter.get("result").toString());
-                } catch (EvalError evalError) {
-                    evalError.printStackTrace();
-                }
-            } else {
-                CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
-                String valor = CalculationValues.getText().toString();
+                    }
 
+                    catch (EvalError evalError)
+                    {
+                         evalError.printStackTrace();
+                    }
             }
+
+            else
+                {
+                CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
+                }
 
         }
     }
