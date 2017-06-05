@@ -2,22 +2,21 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import bsh.EvalError;
 import bsh.Interpreter;
+//This class belongs to BeanShell .jar package
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 TextView CalculationValues;
 Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnClear, btnMinus, btnDivision, btnMulti, btnPoint , btnResult;
-String operationSignal;
 
-Double v1 = 0.0, v2 = 0.0, v3 = 0.0, v4 = 0.0;
-Integer s1 = 0 , s2 = 0;
+
 
 
 
@@ -103,30 +102,33 @@ Integer s1 = 0 , s2 = 0;
     @Override
     public void onClick(View v) {
 
-        TextView txt = (TextView)findViewById(v.getId());
+        TextView txt = (TextView) findViewById(v.getId());
 
+        if (txt.getText().equals("C")) {
+            CalculationValues.setText("0");
+        } else {
+            if (txt.getText().equals("=")) {
 
-        if (txt.getText().equals("=")) {
+                //This object was created used BeanShell
+                Interpreter interpreter = new Interpreter();
+                try {
 
-            Interpreter interpreter = new Interpreter();
-            try {
-                //interpreter.eval("result = (7+21*6)/(32-27)");
-                String equation = CalculationValues.getText().toString();
-                equation = equation.replace("X", "*");
-                equation = equation.replace("÷", "/");
-                interpreter.eval("result =" + equation);
+                    String equation = CalculationValues.getText().toString();
+                    equation = equation.replace("X", "*");
+                    equation = equation.replace("÷", "/");
+                    interpreter.eval("result =" + equation);
 
-                CalculationValues.setText(interpreter.get("result").toString());
-            } catch (EvalError evalError) {
-                evalError.printStackTrace();
+                    CalculationValues.setText(interpreter.get("result").toString());
+                } catch (EvalError evalError) {
+                    evalError.printStackTrace();
+                }
+            } else {
+                CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
+                String valor = CalculationValues.getText().toString();
+
             }
-        }
-        else {
-            CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
-            String valor = CalculationValues.getText().toString();
-            Log.w("Valor", "" + txt.getText());
-        }
 
         }
+    }
 
     }
