@@ -21,6 +21,7 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,14 +105,8 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
         TextView txt = (TextView) findViewById(v.getId());
 
-        if (txt.getText().equals("C"))
-        {
-          CalculationValues.setText("");
 
-        }
 
-        else
-            {
             if (txt.getText().equals("="))
             {
 
@@ -140,7 +135,13 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
                 CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
                 }
 
+        if (txt.getText().equals("C"))
+        {
+            CalculationValues.setText("");
+
+        }
+
         }
     }
 
-    }
+
