@@ -2,6 +2,7 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 TextView CalculationValues;
 Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnClear, btnMinus, btnDivision, btnMulti, btnPoint , btnResult;
+int operationChecker = 0;
 
 
 
@@ -103,11 +105,35 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
     @Override
     public void onClick(View v) {
 
-        TextView txt = (TextView) findViewById(v.getId());
+        TextView txt1 = (TextView) findViewById(v.getId());
 
 
 
-            if (txt.getText().equals("="))
+
+        if (txt1.getText().equals("+"))
+        {
+
+            operationChecker = 1;
+            Log.w("Clique soma","" + operationChecker);
+        }
+        else
+        {
+
+            operationChecker = 0;
+            Log.w("Clicou numero","" + operationChecker);
+        }
+
+        if (operationChecker == 1)
+        {
+
+            String teste = CalculationValues.getText().toString();
+            teste = teste.replace("+","");
+            CalculationValues.setText(teste);
+            Log.w("Limpou a soma","" + operationChecker);
+        }
+
+
+            if (txt1.getText().equals("="))
             {
 
                 //This object was created used BeanShell
@@ -132,10 +158,12 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
             else
                 {
-                CalculationValues.setText(CalculationValues.getText().toString() + txt.getText().toString());
+                CalculationValues.setText(CalculationValues.getText().toString() + txt1.getText().toString());
                 }
 
-        if (txt.getText().equals("C"))
+
+        // This condition clears the textview
+        if (txt1.getText().equals("C"))
         {
             CalculationValues.setText("");
 
