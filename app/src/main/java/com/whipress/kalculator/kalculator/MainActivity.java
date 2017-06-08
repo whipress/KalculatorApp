@@ -2,6 +2,7 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
 String operartionValue;
 int counterOp = 0;
+
+int triggerOne = 0;
 
 
     @Override
@@ -105,6 +108,16 @@ int counterOp = 0;
         TextView txt1 = (TextView) findViewById(v.getId());
 
 
+       if (txt1.getText().equals("+") && triggerOne == 0 || txt1.getText().equals("-") && triggerOne == 0 || txt1.getText().equals("X") && triggerOne == 0 || txt1.getText().equals("÷") && triggerOne == 0)
+                {
+
+                    operartionValue = "";
+                    Log.w("Valor", "Clique do +");
+             }
+
+
+
+
 
         if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
@@ -114,6 +127,7 @@ int counterOp = 0;
         else
         {
             counterOp = 1;
+            triggerOne = 1;
         }
 
 
@@ -147,11 +161,17 @@ int counterOp = 0;
 
                 operartionValue = txt1.getText().toString();
 
-                if (counterOp > 2 || counterOp == 0)
+
+                    if (counterOp > 2)
                 {
                     operartionValue = "";
                 }
-                CalculationValues.setText(CalculationValues.getText().toString() + operartionValue);
+
+
+                if (triggerOne > 0 ) {
+                    CalculationValues.setText(CalculationValues.getText().toString() + operartionValue);
+
+                }
                 }
 
 
@@ -159,7 +179,7 @@ int counterOp = 0;
         if (txt1.getText().equals("C"))
         {
             CalculationValues.setText("");
-
+            
         }
 
         }
