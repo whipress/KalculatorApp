@@ -2,7 +2,6 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,12 +15,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 TextView CalculationValues;
 Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnClear, btnMinus, btnDivision, btnMulti, btnPoint , btnResult;
-int operationChecker = 0;
 
 
-
-
-
+String operartionValue;
+int counterOp = 0;
 
 
     @Override
@@ -109,28 +106,17 @@ int operationChecker = 0;
 
 
 
-
-        if (txt1.getText().equals("+"))
+        if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
 
-            operationChecker = 1;
-            Log.w("Clique soma","" + operationChecker);
+            counterOp = counterOp + 1;
         }
         else
         {
-
-            operationChecker = 0;
-            Log.w("Clicou numero","" + operationChecker);
+            counterOp = 1;
         }
 
-        if (operationChecker == 1)
-        {
 
-            String teste = CalculationValues.getText().toString();
-            teste = teste.replace("+","");
-            CalculationValues.setText(teste);
-            Log.w("Limpou a soma","" + operationChecker);
-        }
 
 
             if (txt1.getText().equals("="))
@@ -158,7 +144,14 @@ int operationChecker = 0;
 
             else
                 {
-                CalculationValues.setText(CalculationValues.getText().toString() + txt1.getText().toString());
+
+                operartionValue = txt1.getText().toString();
+
+                if (counterOp > 2 || counterOp == 0)
+                {
+                    operartionValue = "";
+                }
+                CalculationValues.setText(CalculationValues.getText().toString() + operartionValue);
                 }
 
 
