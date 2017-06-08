@@ -179,7 +179,8 @@ int triggerOne = 0;
         if (txt1.getText().equals("C"))
         {
             CalculationValues.setText("");
-            
+            triggerOne = 0;
+
         }
 
         }
