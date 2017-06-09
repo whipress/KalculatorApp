@@ -19,10 +19,12 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
 
 String operartionValue;
-int counterOp = 0;
 
+int counterOp = 0;
 int triggerOne = 0;
 
+int op1 = 0;
+String negativo1 = "-";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,7 @@ int triggerOne = 0;
     public void onClick(View v) {
 
         TextView txt1 = (TextView) findViewById(v.getId());
-
+/*
 
        if (txt1.getText().equals("+") && triggerOne == 0 || txt1.getText().equals("-") && triggerOne == 0 || txt1.getText().equals("X") && triggerOne == 0 || txt1.getText().equals("÷") && triggerOne == 0)
                 {
@@ -115,6 +117,7 @@ int triggerOne = 0;
                     Log.w("Valor", "Clique do +");
              }
 
+*/
 
 
 
@@ -122,6 +125,12 @@ int triggerOne = 0;
         if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
 
+            if (txt1.getText().equals("-") && op1 == 0)
+            {
+                CalculationValues.setText("-");
+                Log.w("Msg 1", "Negativo" + negativo1);
+                op1 = 1;
+            }
             counterOp = counterOp + 1;
         }
         else
@@ -169,6 +178,8 @@ int triggerOne = 0;
 
 
                 if (triggerOne > 0 ) {
+
+
                     CalculationValues.setText(CalculationValues.getText().toString() + operartionValue);
 
                 }
@@ -180,6 +191,7 @@ int triggerOne = 0;
         {
             CalculationValues.setText("");
             triggerOne = 0;
+            op1 = 0;
 
         }
 
