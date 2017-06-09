@@ -2,15 +2,15 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import bsh.EvalError;
 import bsh.Interpreter;
-//This class belongs to BeanShell .jar package
 
+
+/* -- THIS CLASS BELONGS TO BEANSHELL .JAR PACKAGE --*/
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,11 +20,13 @@ Button btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnSum, btnCl
 
 String operartionValue;
 
+
+
 int counterOp = 0;
 int triggerOne = 0;
+int firstNegative = 0;
+int operationFinished = 0;
 
-int op1 = 0;
-String negativo1 = "-";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,35 +110,36 @@ String negativo1 = "-";
     public void onClick(View v) {
 
         TextView txt1 = (TextView) findViewById(v.getId());
-/*
 
-       if (txt1.getText().equals("+") && triggerOne == 0 || txt1.getText().equals("-") && triggerOne == 0 || txt1.getText().equals("X") && triggerOne == 0 || txt1.getText().equals("÷") && triggerOne == 0)
-                {
+        /*THIS CONDITION CHECKS IF ANY OPERATION HAS DONE BEFORE IN ORDER TO LET THE NUMBER BE INSERTED FOR THE NEXT CALC */
 
-                    operartionValue = "";
-                    Log.w("Valor", "Clique do +");
-             }
+        if (operationFinished == 1)
+        {
+            CalculationValues.setText("");
+            operationFinished = 0;
+        }
 
-*/
 
 
 
 
         if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
+            /* THIS CONDITION ALOW THE CALC TO START WITH A NEGATIVE NUMBER */
 
-            if (txt1.getText().equals("-") && op1 == 0)
+            if (txt1.getText().equals("-") && firstNegative == 0)
             {
                 CalculationValues.setText("-");
-                Log.w("Msg 1", "Negativo" + negativo1);
-                op1 = 1;
+                firstNegative = 1;
             }
+
             counterOp = counterOp + 1;
         }
         else
         {
             counterOp = 1;
             triggerOne = 1;
+            firstNegative = 1;
         }
 
 
@@ -144,8 +147,10 @@ String negativo1 = "-";
 
             if (txt1.getText().equals("="))
             {
+                operationFinished = 1;
 
-                //This object was created used BeanShell
+
+                /* THIS OBJETECT IS CREATED USING BEANSHELL PACKAGE */
                 Interpreter interpreter = new Interpreter();
 
 
@@ -182,16 +187,18 @@ String negativo1 = "-";
 
                     CalculationValues.setText(CalculationValues.getText().toString() + operartionValue);
 
+
+
                 }
                 }
 
 
-        // This condition clears the textview
+        /* THIS CONDITION CLEAR THE TEXTVIEW */
         if (txt1.getText().equals("C"))
         {
             CalculationValues.setText("");
             triggerOne = 0;
-            op1 = 0;
+            firstNegative = 0;
 
         }
 
