@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:columnCount="1"
+    android:background="#ffffff"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,12 +16,12 @@
             android:layout_height="120dp"
             android:gravity="center|left"
             android:textSize="60dp"
+            android:textColor="#000000"
             android:id="@+id/CalculationValues"
-            android:background="@drawable/gradient"
+            android:background="#ffffff"
 
             />
-
-    </LinearLayout>
+     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal">
@@ -31,7 +32,6 @@
             android:text="7"
             android:id="@+id/btn7"
             android:textSize="40dp"
-
             />
         <Button
             android:layout_width="0dp"
@@ -51,6 +51,7 @@
             android:text="9"
             android:textSize="40dp"
 
+
             />
         <Button
             android:layout_width="0dp"
@@ -60,6 +61,7 @@
             android:id="@+id/btnDivision"
             android:text="÷"
             android:textSize="40dp"
+            android:backgroundTint="#999999"
             />
 
 
@@ -107,6 +109,8 @@
             android:id="@+id/btnMulti"
             android:text="X"
             android:textSize="40dp"
+            android:backgroundTint="#999999"
+
             />
 
     </LinearLayout>
@@ -152,6 +156,8 @@
             android:id="@+id/btnMinus"
             android:text="-"
             android:textSize="40dp"
+            android:backgroundTint="#999999"
+
             />
 
     </LinearLayout>
@@ -197,6 +203,7 @@
             android:id="@+id/btnSum"
             android:text="+"
             android:textSize="40dp"
+            android:backgroundTint="#999999"
 
             />
 
@@ -211,7 +218,8 @@
             android:layout_height="wrap_content"
             android:text="="
             android:id="@+id/btnResult"
-            android:textSize="40dp"
+            android:textSize="60dp"
+            android:background="#07a8a8"
 
             />
 
