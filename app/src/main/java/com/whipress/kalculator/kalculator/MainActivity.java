@@ -2,6 +2,7 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import bsh.EvalError;
 import bsh.Interpreter;
 
+/* THIS A SECURE VERSION JUST TO TEST ROLL BACK  */
 
 /* -- THIS CLASS BELONGS TO BEANSHELL .JAR PACKAGE --*/
 
@@ -117,13 +119,14 @@ int operationFinished = 0;
         {
             CalculationValues.setText("");
             operationFinished = 0;
+            Log.w("Operação 2?", "Esta é a segunda operação?");
         }
 
 
 
+      /////////////////////////////////////////
 
-
-        if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
+            if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
             /* THIS CONDITION ALOW THE CALC TO START WITH A NEGATIVE NUMBER */
 
@@ -189,6 +192,7 @@ int operationFinished = 0;
 
 
 
+
                 }
                 }
 
@@ -201,6 +205,7 @@ int operationFinished = 0;
             firstNegative = 0;
 
         }
+
 
         }
     }
