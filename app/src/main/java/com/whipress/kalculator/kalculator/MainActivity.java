@@ -2,7 +2,6 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -128,7 +127,7 @@ int operationFinished = 0;
                     CalculationValues.setText("");
                 }
                 operationFinished = 0;
-                 Log.w("Operação 2?", "Esta é a segunda operação?");
+                
         }
 
 
