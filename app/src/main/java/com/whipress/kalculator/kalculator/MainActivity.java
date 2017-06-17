@@ -117,9 +117,18 @@ int operationFinished = 0;
 
         if (operationFinished == 1)
         {
-            CalculationValues.setText("");
-            operationFinished = 0;
-            Log.w("Operação 2?", "Esta é a segunda operação?");
+
+                if (operationFinished == 1 && txt1.getText().equals("+") || operationFinished == 1 && txt1.getText().equals("-") || operationFinished == 1 && txt1.getText().equals("X") || operationFinished == 1 && txt1.getText().equals("÷") )
+                {
+
+                }
+                //CalculationValues.setText("");
+                else
+                {
+                    CalculationValues.setText("");
+                }
+                operationFinished = 0;
+                 Log.w("Operação 2?", "Esta é a segunda operação?");
         }
 
 
