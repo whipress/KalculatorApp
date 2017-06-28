@@ -2,12 +2,17 @@ package com.whipress.kalculator.kalculator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.*;
+import java.util.Locale;
+
 import bsh.EvalError;
 import bsh.Interpreter;
+
 
 /* THIS A SECURE VERSION JUST TO TEST ROLL BACK  */
 
@@ -127,7 +132,7 @@ int operationFinished = 0;
                     CalculationValues.setText("");
                 }
                 operationFinished = 0;
-                
+
         }
 
 
@@ -172,7 +177,19 @@ int operationFinished = 0;
                     equation = equation.replace("X", "*");
                     equation = equation.replace("÷", "/");
                     interpreter.eval("result =" + equation);
-                    CalculationValues.setText(interpreter.get("result").toString());
+
+
+
+
+                   Double resultFinal = Double.parseDouble(interpreter.get("result").toString());
+                   DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
+
+                    String x = df.format(resultFinal);
+
+                   Log.w("valor", "" + x);
+
+
+                    CalculationValues.setText(x);
                     }
 
                     catch (EvalError evalError)
