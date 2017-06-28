@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 import bsh.EvalError;
@@ -141,7 +142,7 @@ int operationFinished = 0;
 
             if (txt1.getText().equals("+") || txt1.getText().equals("-") || txt1.getText().equals("X") || txt1.getText().equals("÷"))
         {
-            /* THIS CONDITION ALOW THE CALC TO START WITH A NEGATIVE NUMBER */
+            /* THIS CONDITION ALLOWS THE CALC STARTS WITH A NEGATIVE NUMBER */
 
             if (txt1.getText().equals("-") && firstNegative == 0)
             {
@@ -173,9 +174,25 @@ int operationFinished = 0;
 
                 try {
 
+
                     String equation = CalculationValues.getText().toString();
                     equation = equation.replace("X", "*");
                     equation = equation.replace("÷", "/");
+
+                    //THIS REPLACEMENT MAKE THE DIVISION RETURNS DECIMAL POINTS PROPERLY
+                    equation = equation.replace("/1", "/1.0");
+                    equation = equation.replace("/2", "/2.0");
+                    equation = equation.replace("/3", "/3.0");
+                    equation = equation.replace("/4", "/4.0");
+                    equation = equation.replace("/5", "/5.0");
+                    equation = equation.replace("/6", "/6.0");
+                    equation = equation.replace("/7", "/7.0");
+                    equation = equation.replace("/8", "/8.0");
+                    equation = equation.replace("/9", "/9.0");
+
+
+
+
                     interpreter.eval("result =" + equation);
 
 
@@ -184,12 +201,12 @@ int operationFinished = 0;
                    Double resultFinal = Double.parseDouble(interpreter.get("result").toString());
                    DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(Locale.US));
 
-                    String x = df.format(resultFinal);
+                    String finalValue = df.format(resultFinal);
 
-                   Log.w("valor", "" + x);
+                   Log.w("valor", "" + finalValue);
 
 
-                    CalculationValues.setText(x);
+                    CalculationValues.setText(finalValue);
                     }
 
                     catch (EvalError evalError)
