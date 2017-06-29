@@ -180,7 +180,7 @@ int operationFinished = 0;
                     equation = equation.replace("÷", "/");
 
                     //THIS REPLACEMENT MAKE THE DIVISION RETURNS DECIMAL POINTS PROPERLY
-                    equation = equation.replace("/1", "/1.0");
+                    /*equation = equation.replace("/1", "/1.0");
                     equation = equation.replace("/2", "/2.0");
                     equation = equation.replace("/3", "/3.0");
                     equation = equation.replace("/4", "/4.0");
@@ -188,7 +188,11 @@ int operationFinished = 0;
                     equation = equation.replace("/6", "/6.0");
                     equation = equation.replace("/7", "/7.0");
                     equation = equation.replace("/8", "/8.0");
-                    equation = equation.replace("/9", "/9.0");
+                    equation = equation.replace("/9", "/9.0");*/
+
+
+
+                    Log.w("A equacao", equation);
 
 
 
